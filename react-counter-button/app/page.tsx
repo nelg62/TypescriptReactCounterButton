@@ -1,17 +1,10 @@
 "use client";
+import { ButtonIndependentState } from "@/components/button-independent-state";
+import { ButtonSharedState } from "@/components/button-shared-state";
 import Image from "next/image";
 import { useState } from "react";
 
 export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center p-24 gap-4">
-      <h1>React Counter Button</h1>
-      <MyButton />
-    </main>
-  );
-}
-
-function MyButton() {
   const [count, setCount] = useState(0);
 
   function handleClick() {
@@ -19,11 +12,14 @@ function MyButton() {
   }
 
   return (
-    <button
-      onClick={handleClick}
-      className="bg-blue-500 hover:bg-blue-700 rounded text-white font-bold px-4 py-2"
-    >
-      I have been clicked {count} times
-    </button>
+    <main className="flex min-h-screen flex-col items-center p-24 gap-4">
+      <h1 className="text-3xl font-bold">React Counter Button</h1>
+      <h2 className="text-xl">Buttons with shared state</h2>
+      <ButtonSharedState count={count} onClick={handleClick} />
+      <ButtonSharedState count={count} onClick={handleClick} />
+      <h2 className="text-xl">Buttons with independent state</h2>
+      <ButtonIndependentState />
+      <ButtonIndependentState />
+    </main>
   );
 }
